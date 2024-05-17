@@ -1,59 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Table with Datepicker</title>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Table App</title>
+    <link rel="stylesheet" href="css/scss/style3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-<h2>Table with Datepicker</h2>
-<table id="dataTable">
-<thead>
-<tr>
-<th>Date</th>
-<th>Product</th>
-<th>p1</th>
-<th>p2</th>
-<th>p3</th>
-<th>Total</th>
-<th>GrandTotal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><input type="text" class="datepicker" /></td>
-<td><input type="text" class="Blandito" /></td>
-<td><input type="number" class="p1" /></td>
-<td><input type="number" class="p2" /></td>
-<td><input type="number" class="p3" /></td>
-<td><input type="text" class="total" readonly /></td>
-<td><input type="text" class="grandTotal" readonly /></td>
-</tr>
-<tr>
-<td><input type="text" class="datepicker" /></td>
-<td><input type="text" class="Baguette" /></td>
-<td><input type="number" class="p1" /></td>
-<td><input type="number" class="p2" /></td>
-<td><input type="number" class="p3" /></td>
-<td><input type="text" class="total" readonly /></td>
-<td><input type="text" class="grandTotal" readonly /></td>
-</tr>
-<tr>
-<td><input type="text" class="datepicker" /></td>
-<td><input type="text" class="Coco" /></td>
-<td><input type="number" class="p1" /></td>
-<td><input type="number" class="p2" /></td>
-<td><input type="number" class="p3" /></td>
-<td><input type="text" class="total" readonly /></td>
-<td><input type="text" class="grandTotal" readonly /></td>
-</tr>
-</tbody>
-</table>
-<textarea id="grandTotalTextArea" rows="4" cols="50" readonly></textarea>
-<button id="saveButton">Save as day2.json</button>
-<script src="js/script3.js"></script>
+    <h1>Frontend Table App</h1>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Product</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>P3</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="datepicker"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="number"></td>
+                <td><input type="number"></td>
+                <td><span class="total"></span></td>
+            </tr>
+            <!-- Repeat the above row two more times for a total of 3 rows -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Grand Total:</td>
+                <td><span id="grandTotal"></span></td>
+            </tr>
+        </tfoot>
+    </table>
+    <button id="saveBtn">Save</button>
+    <textarea id="chatLog" rows="10" cols="50" readonly></textarea>
+    <input type="text" id="chatInput" placeholder="Type your message here">
+    <button id="chatBtn">Send</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/script3.js"></script>
+    <script src="js/chat.js"></script>
 </body>
 </html>
