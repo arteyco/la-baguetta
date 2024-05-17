@@ -48,7 +48,7 @@ function downloadFile(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
-
+/*
 const express = require('express');
 const app = express();
 const fs = require('fs');
@@ -78,7 +78,31 @@ app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
 
+*/
 
+const langchain = require('langchain');
+const embeddingModel = new langchain.AllMiniLmL6V2EmbeddingModel();
+const embeddingStore = new langchain.InMemoryEmbeddingStore();
+const ingestor = langchain.EmbeddingStoreIngestor.builder()
+  .documentSplitter(langchain.DocumentSplitters.recursive(300, 0))
+  .embeddingModel(embeddingModel)
+  .embeddingStore(embeddingStore)
+  .build();
+
+const document = fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8');
+const chatDocument = langchain.TextDocumentParser.parse(document);
+ingestor.ingest(chatDocument);
+
+const chain = langchain.ConversationalRetrievalChain.builder()
+  .chatLanguageModel(langchain.OpenAiChatModel.withApiKey('YOUR_OPENAI_API_KEY'))
+  .retriever(langchain.EmbeddingStoreRetriever.from(embeddingStore, embeddingModel))
+  .build();
+
+app.post('/send', (req, res) => {
+  const message = req.body.message;
+  const response = chain.execute(message);
+  res.send(response);
+});
 
 /*
 function sendMessage() {
