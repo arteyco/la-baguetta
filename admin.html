@@ -3,40 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Table and Chat</title>
-    <link rel="stylesheet" href="scss/css/style.css">
+    <title>Product Table</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons/favicon.ico">
 </head>
 <body>
-    <h1>Product Table</h1>
-    <table id="productTable">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>P1</th>
-                <th>P2</th>
-                <th>P3</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <tr>
-                <td contenteditable="true">Product 1</td>
-                <td contenteditable="true">0</td>
-                <td contenteditable="true">0</td>
-                <td contenteditable="true">0</td>
-                <td>0.0</td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTable()">Save Table</button>
-
-    <h1>OpenAI Chat</h1>
-    <div id="chatSection">
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type a message...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-
-    <script src="js/script.js"></script>
+    <header>
+        <img src="images/logo.png" alt="Logo">
+        <h1>Product Table</h1>
+    </header>
+    <main>
+        <table id="product-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>P1</th>
+                    <th>P2</th>
+                    <th>P3</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- data will be rendered here -->
+            </tbody>
+        </table>
+        <button id="save-button">Save Changes</button>
+        <section id="chat-section">
+            <h2>OpenAI Chat</h2>
+            <input id="chat-input" type="text" placeholder="Type a message...">
+            <button id="chat-send-button">Send</button>
+            <div id="chat-log">
+                <!-- chat log will be rendered here -->
+            </div>
+        </section>
+    </main>
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery.dataTables.min.js"></script>
+    <script src="libs/jsPDF.min.js"></script>
+    <script src="libs/fileSaver.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
