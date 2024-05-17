@@ -48,7 +48,7 @@ function downloadFile(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
-
+/*
 const langchain = require('langchain');
 const embeddingModel = new langchain.AllMiniLmL6V2EmbeddingModel();
 const embeddingStore = new langchain.InMemoryEmbeddingStore();
@@ -72,7 +72,7 @@ app.post('/send', (req, res) => {
   const response = chain.execute(message);
   res.send(response);
 });
-
+*/
 
 
 /*
