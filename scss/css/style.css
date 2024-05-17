@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: blue;
 }
 
 h1 {
@@ -11,6 +12,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    background-color: lightblue;
 }
 
 table, th, td {
