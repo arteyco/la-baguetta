@@ -1,48 +1,46 @@
-$(document).ready(function() {
-    $(".datepicker").datepicker();
-    
-    function calculateTotal(p1, p2, p3) {
-        return (p1 + p2) * p3;
-    }
-    
-    function calculateGrandTotal() {
-        let grandTotal = 0;
-        $(".grandTotal").each(function() {
-            grandTotal += parseInt($(this).val()) || 0;
-        });
-        $("#grandTotalTextArea").val(grandTotal);
-    }
-    
-    $(".p1, .p2, .p3").on("input", function() {
-        let $row = $(this).closest("tr");
-        let p1 = parseInt($row.find(".p1").val()) || 0;
-        let p2 = parseInt($row.find(".p2").val()) || 0;
-        let p3 = parseInt($row.find(".p3").val()) || 0;
-        let total = calculateTotal(p1, p2, p3);
-        $row.find(".total").val(total);
-        calculateGrandTotal();
+// Initialize datepicker
+flatpickr('.datepicker', {});
+
+// Calculate total for a row
+function calculateTotal(row) {
+    const p1 = parseInt(row.querySelector('input[type="number"]:nth-child(3)').value) || 0;
+    const p2 = parseInt(row.querySelector('input[type="number"]:nth-child(4)').value) || 0;
+    const p3 = parseInt(row.querySelector('input[type="number"]:nth-child(5)').value) || 0;
+    row.querySelector('.total').textContent = (p1 + p2) * p3;
+    updateGrandTotal();
+}
+
+// Update grand total
+function updateGrandTotal() {
+    let grandTotal = 0;
+    const totals = document.querySelectorAll('.total');
+    totals.forEach(total => {
+        const value = parseInt(total.textContent) || 0;
+        grandTotal += value;
     });
-    
-    $("#saveButton").on("click", function() {
-        let data = [];
-        $("#dataTable tbody tr").each(function() {
-            let row = {};
-            row.date = $(this).find(".datepicker").val();
-            row.product = $(this).find(".product").val();
-            row.p1 = parseInt($(this).find(".p1").val()) || 0;
-            row.p2 = parseInt($(this).find(".p2").val()) || 0;
-            row.p3 = parseInt($(this).find(".p3").val()) || 0;
-            data.push(row);
-        });
-        
-        let jsonData = JSON.stringify(data);
-        let blob = new Blob([jsonData], { type: "application/json" });
-        let url = URL.createObjectURL(blob);
-        let a = document.createElement("a");
-        a.href = url;
-        a.download = "day2.json";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+    document.getElementById('grandTotal').textContent = grandTotal;
+}
+
+// Add event listeners to inputs
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', function() {
+        const row = this.parentNode.parentNode;
+        calculateTotal(row);
     });
+});
+
+// Save to localStorage as JSON
+document.getElementById('saveBtn').addEventListener('click', function() {
+    const data = Array.from(document.querySelectorAll('tbody tr')).map(row => {
+        const cells = row.querySelectorAll('input, .total');
+        return {
+            date: cells[0].value,
+            product: cells[1].value,
+            p1: cells[2].value,
+            p2: cells[3].value,
+            p3: cells[4].value,
+            total: cells[5].textContent
+        };
+    });
+    localStorage.setItem('day2', JSON.stringify(data));
 });
