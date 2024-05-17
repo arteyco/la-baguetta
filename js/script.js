@@ -84,5 +84,15 @@ async function setupChatBot() {
 setupChatBot().then((chain) => {
     // Now you have the chain setup. You can use this chain to answer questions.
     // You'll need to expose an API endpoint for the chatbot to interact with this chain.
+    app.post('/api/chatbot', async (req, res) => {
+    const query = req.body.query;
+    if (!query) {
+        return res.status(400).send('No query provided');
+    }
+
+    // Assuming `chain` is available here
+    const answer = await chain.call({ query });
+    res.json({ answer });
 });
+
 }
