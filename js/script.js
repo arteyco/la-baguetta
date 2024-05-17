@@ -1,59 +1,65 @@
-$(document).ready(function() {
-    // initialize table
-    var table = $('#product-table').DataTable({
-        "columns": [
-            {"title": "Product", "width": "20%"},
-            {"title": "P1", "width": "20%"},
-            {"title": "P2", "width": "20%"},
-            {"title": "P3", "width": "20%"},
-            {"title": "Total", "width": "20%", "sortable": false}
-        ],
-        "data": [
-            {"Product": "Product 1", "P1": 10, "P2": 20, "P3": 3},
-            {"Product": "Product 2", "P1": 20, "P2": 30, "P3": 4},
-            {"Product": "Product 3", "P1": 30, "P2": 40, "P3": 5}
-        ],
-        "columnDefs": [
-            {"targets": [1, 2, 3], "editable": true},
-            {"targets": [4], "editable": false}
-        ]
-    });
-
-    // calculate total column
-    $('#product-table').on('draw.dt', function() {
-        $.each(table.rows().data(), function(index, row) {
-            row.Total = (row.P1 + row.P2) * row.P3;
-            table.row(index).data(row);
-        });
-    });
-
-    // save button event
-    $('#save-button').on('click', function() {
-        var data = table.rows().data();
-        saveData(data, 'json');
-        saveData(data, 'csv');
-        saveData(data, 'xlsx');
-        saveData(data, 'html');
-        saveData(data, 'pdf');
-    });
-
-    // chat functionality
-    $('#chat-send-button').on('click', function() {
-        var message = $('#chat-input').val();
-        $('#chat-log').append('<p>' + message + '</p>');
-        $('#chat-input').val('');
-        // call openai api here
-    });
-
-    // openai api call
-    function callOpenAI(message) {
-        // todo: implement openai api call
-        console.log(message);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const table = document.getElementById('productTable');
+    table.addEventListener('input', calculateTotal);
 });
 
-// save data to file
-function saveData(data, type) {
-    var blob = new Blob([JSON.stringify(data)], {type: 'application/' + type});
-    saveAs(blob, 'file.' + type);
+function calculateTotal() {
+    const table = document.getElementById('productTable');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const p1 = parseInt(cells[1].innerText) || 0;
+        const p2 = parseInt(cells[2].innerText) || 0;
+        const p3 = parseInt(cells[3].innerText) || 0;
+        const total = (p1 + p2) * p3;
+        cells[4].innerText = total.toFixed(2);
+    }
+}
+
+function saveTable() {
+    const table = document.getElementById('productTable');
+    const rows = table.getElementsByTagName('tr');
+    const data = [];
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const row = {
+            product: cells[0].innerText,
+            p1: parseInt(cells[1].innerText),
+            p2: parseInt(cells[2].innerText),
+            p3: parseInt(cells[3].innerText),
+            total: parseFloat(cells[4].innerText)
+        };
+        data.push(row);
+    }
+
+    const jsonData = JSON.stringify(data);
+    downloadFile(jsonData, 'data.json', 'application/json');
+
+    // Additional code for other formats (CSV, XLSX, HTML, PDF) would go here
+    // This could be implemented using libraries like SheetJS for XLSX and jsPDF for PDF
+}
+
+function downloadFile(content, fileName, contentType) {
+    const a = document.createElement('a');
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+function sendMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value;
+    if (message.trim() === '') return;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+
+    chatInput.value = '';
+
+    // Logic for interacting with the OpenAI API and responding would go here
 }
