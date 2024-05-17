@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: darkblue;
+    background-color: blue;
 }
 
 h1 {
@@ -12,7 +12,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    background-color: lightblue;
+    background-color: aqua;
 }
 
 table, th, td {
@@ -27,7 +27,7 @@ th, td {
 #chatSection {
     border: 1px solid #ccc;
     padding: 10px;
-    background-color: lightblue;
+    background-color: aqua;
 }
 
 #chatMessages {
