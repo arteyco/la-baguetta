@@ -49,6 +49,38 @@ function downloadFile(content, fileName, contentType) {
     a.click();
 }
 
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const path = require('path');
+
+const chatbotData = require('./data.json');
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/send', (req, res) => {
+  const message = req.body.message;
+  const response = chatbotResponse(message);
+  res.send(response);
+});
+
+function chatbotResponse(message) {
+  const response = chatbotData[message];
+  if (!response) {
+    response = 'I didn\'t understand that. Can you please rephrase?';
+  }
+  return response;
+}
+
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+
+
+
+/*
 function sendMessage() {
     const chatInput = document.getElementById('chatInput');
     const message = chatInput.value;
@@ -86,7 +118,7 @@ app.post('/send', (req, res) => {
   res.send(response);
 });
 }
-
+*/
 
 
 
