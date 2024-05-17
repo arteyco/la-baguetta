@@ -48,6 +48,21 @@ function downloadFile(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
+function sendMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value;
+    if (message.trim() === '') return;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+
+    chatInput.value = '';
+
+    // Logic for interacting with the OpenAI API and responding would go here
+    // Inside server.js or a separate module
+
 /*
 const langchain = require('langchain');
 const embeddingModel = new langchain.AllMiniLmL6V2EmbeddingModel();
@@ -225,20 +240,7 @@ function downloadFile(content, fileName, contentType) {
     a.click();
 }
 
-function sendMessage() {
-    const chatInput = document.getElementById('chatInput');
-    const message = chatInput.value;
-    if (message.trim() === '') return;
 
-    const chatMessages = document.getElementById('chatMessages');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = message;
-    chatMessages.appendChild(messageElement);
-
-    chatInput.value = '';
-
-    // Logic for interacting with the OpenAI API and responding would go here
-    // Inside server.js or a separate module
     */
     /*
 const langchain = require('langchain');
