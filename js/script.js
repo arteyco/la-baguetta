@@ -106,7 +106,7 @@ app.listen(3000, () => {
 });
 
 */
-
+/*
 const langchain = require('langchain');
 const embeddingModel = new langchain.AllMiniLmL6V2EmbeddingModel();
 const embeddingStore = new langchain.InMemoryEmbeddingStore();
@@ -130,7 +130,7 @@ app.post('/send', (req, res) => {
   const response = chain.execute(message);
   res.send(response);
 });
-
+*/
 /*
 function sendMessage() {
     const chatInput = document.getElementById('chatInput');
