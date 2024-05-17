@@ -265,7 +265,7 @@ app.post('/send', (req, res) => {
   res.send(response);
 });
     */
-
+/*
 const model = new OpenAI({ temperature: 0 });
 const embeddingModel = new OpenAIEmbeddings();
 
@@ -299,4 +299,4 @@ setupChatBot().then((chain) => {
 });
 
 }
-
+*/
