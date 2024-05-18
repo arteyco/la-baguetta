@@ -1,177 +1,35 @@
-// Initial data (load from day4.json if it exists)
-let tableData = [
-  { product: "Blandito", p1: 10, p2: 5, p3: 2, total: 0 },
-  { product: "baguette", p1: 15, p2: 8, p3: 3, total: 0 },
-]; 
-
-// Function to populate the table with data
-function populateTable() {
-  const tbody = document.querySelector("#productTable tbody");
-  tbody.innerHTML = ''; // Clear existing content
-
-  tableData.forEach((row, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td><input type="text" value="${row.product}"></td>
-      <td><input type="number" value="${row.p1}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="number" value="${row.p2}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="number" value="${row.p3}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="text" value="${row.total}" readonly></td>
-    `;
-    tbody.appendChild(tr);
-  });
+function calculateTotal(p1, p2, p3) {
+    return (p1 + p2) * p3;
 }
 
-// Function to calculate the total for a row
-function calculateRowTotal(rowIndex) {
-  const row = tableData[rowIndex];
-  const rowInputs = document.querySelectorAll(`#productTable tbody tr:nth-child(${rowIndex + 1}) input`);
-  row.p1 = parseInt(rowInputs[1].value);
-  row.p2 = parseInt(rowInputs[2].value);
-  row.p3 = parseInt(rowInputs[3].value);
-  row.total = (row.p1 + row.p2) * row.p3;
-  rowInputs[4].value = row.total; 
-}
-
-// Function to calculate the grand total
 function calculateGrandTotal() {
-  let grandTotal = 0;
-  tableData.forEach(row => {
-    grandTotal += row.total;
-  });
-  document.getElementById("grandTotalArea").value = grandTotal;
-}
+    let totalCells = document.querySelectorAll("#editableTable tbody tr td:nth-child(5)");
+    let grandTotal = 0;
 
-// Function to save the table data to day4.json
-function saveTable() {
-  // Update tableData with the latest input values
-  const rows = document.querySelectorAll("#productTable tbody tr");
-  tableData = [];
-  rows.forEach(row => {
-    const inputs = row.querySelectorAll("input");
-    tableData.push({
-      product: inputs[0].value,
-      p1: parseInt(inputs[1].value),
-      p2: parseInt(inputs[2].value),
-      p3: parseInt(inputs[3].value),
-      total: parseInt(inputs[4].value)
+    totalCells.forEach(cell => {
+        grandTotal += parseFloat(cell.textContent);
     });
-  });
 
-  const jsonData = JSON.stringify(tableData);
-
-  // Use fetch API or other methods to save jsonData to day4.json
-  // Here's a simple example using Fetch:
-  fetch('day4.json', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: jsonData
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Data saved successfully:', data);
-  })
-  .catch(error => {
-    console.error('Error saving data:', error);
-  });
+    document.getElementById("grandTotal").value = grandTotal;
 }
 
-// Call populateTable to initially load the table
-populateTable();
-
-// ... (AI Chat functionality using LangChain in ai_chat.py)// Initial data (load from day4.json if it exists)
-let tableData = [
-  { product: "Product A", p1: 10, p2: 5, p3: 2, total: 0 },
-  { product: "Product B", p1: 15, p2: 8, p3: 3, total: 0 },
-]; 
-
-// Function to populate the table with data
-function populateTable() {
-  const tbody = document.querySelector("#productTable tbody");
-  tbody.innerHTML = ''; // Clear existing content
-
-  tableData.forEach((row, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td><input type="text" value="${row.product}"></td>
-      <td><input type="number" value="${row.p1}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="number" value="${row.p2}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="number" value="${row.p3}" onchange="calculateRowTotal(${index})"></td>
-      <td><input type="text" value="${row.total}" readonly></td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-// Function to calculate the total for a row
-function calculateRowTotal(rowIndex) {
-  const row = tableData[rowIndex];
-  const rowInputs = document.querySelectorAll(`#productTable tbody tr:nth-child(${rowIndex + 1}) input`);
-  row.p1 = parseInt(rowInputs[1].value);
-  row.p2 = parseInt(rowInputs[2].value);
-  row.p3 = parseInt(rowInputs[3].value);
-  row.total = (row.p1 + row.p2) * row.p3;
-  rowInputs[4].value = row.total; 
-}
-
-// Function to calculate the grand total
-function calculateGrandTotal() {
-  let grandTotal = 0;
-  tableData.forEach(row => {
-    grandTotal += row.total;
-  });
-  document.getElementById("grandTotalArea").value = grandTotal;
-}
-
-// Function to save the table data to day4.json
 function saveTable() {
-  // Update tableData with the latest input values
-  const rows = document.querySelectorAll("#productTable tbody tr");
-  tableData = [];
-  rows.forEach(row => {
-    const inputs = row.querySelectorAll("input");
-    tableData.push({
-      product: inputs[0].value,
-      p1: parseInt(inputs[1].value),
-      p2: parseInt(inputs[2].value),
-      p3: parseInt(inputs[3].value),
-      total: parseInt(inputs[4].value)
+    let tableData = [];
+    document.querySelectorAll("#editableTable tbody tr").forEach(row => {
+        let rowData = {
+            product: row.cells[0].textContent,
+            p1: parseInt(row.cells[1].textContent),
+            p2: parseInt(row.cells[2].textContent),
+            p3: parseInt(row.cells[3].textContent),
+            total: parseFloat(row.cells[4].textContent)
+        };
+        tableData.push(rowData);
     });
-  });
 
-  const jsonData = JSON.stringify(tableData);
-
-  // Use fetch API or other methods to save jsonData to day4.json
-  // Here's a simple example using Fetch:
-  fetch('day4.json', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: jsonData
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Data saved successfully:', data);
-  })
-  .catch(error => {
-    console.error('Error saving data:', error);
-  });
+    // Convert tableData to JSON and save it to a local file (e.g., day5.json)
+    let jsonData = JSON.stringify(tableData);
+    // Code to save jsonData to a local file using File API or any other suitable method
 }
 
-// Call populateTable to initially load the table
-populateTable();
-
-// ... (AI Chat functionality using LangChain in ai_chat.py)
+// Create the table with initial data
+// Code to add rows dynamically with editable cells and calculate total on input change
