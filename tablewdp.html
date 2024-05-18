@@ -65,12 +65,12 @@ background-color: orange;
     let tableData = [];
 
     function calculateTotals() {
-      for (let i = 1; i <= 3; i++) {
+      for (let i = 1; i <= 9; i++) {
         let p1 = document.getElementById(`p1${i}`).value;
         let p2 = document.getElementById(`p2${i}`).value;
         let p3 = document.getElementById(`p3${i}`).value;
         let total = (parseInt(p1) + parseInt(p2)) * parseInt(p3);
-        document.getElementById(`total${i}`).innerHTML = total.toFixed(2);
+        document.getElementById(`total${i}`).innerHTML = total.toFixed(8);
         tableData.push({
           date: document.getElementById(`date${i}`).value,
           product: document.getElementById(`product${i}`).value,
