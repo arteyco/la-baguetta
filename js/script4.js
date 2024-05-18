@@ -47,11 +47,19 @@ function calculateGrandTotal() {
     document.getElementById("grandTotalArea").value = grandTotal;
 }
 
-// Function to save the table data to a JSON file
+// In script.js
 function saveTable() {
     const jsonData = JSON.stringify(products);
-    // Implement logic to save jsonData to day4.json (see next section)
+    fetch('/save', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: jsonData
+    })
+    .then(response => response.text())
+    .then(message => alert(message))
+    .catch(error => console.error('Error saving data:', error));
 }
+
 
 // Initialize the table with a row
 addRow();
