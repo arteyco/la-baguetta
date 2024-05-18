@@ -48,6 +48,7 @@ function downloadFile(content, fileName, contentType) {
     a.download = fileName;
     a.click();
 }
+/*
 function sendMessage() {
     const chatInput = document.getElementById('chatInput');
     const message = chatInput.value;
@@ -267,7 +268,7 @@ app.post('/send', (req, res) => {
   res.send(response);
 });
     */
-/*
+
 const model = new OpenAI({ temperature: 0 });
 const embeddingModel = new OpenAIEmbeddings();
 
@@ -301,4 +302,4 @@ setupChatBot().then((chain) => {
 });
 
 }
-*/
+
