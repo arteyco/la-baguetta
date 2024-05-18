@@ -5,6 +5,61 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Add a search bar above the table -->
+<input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for products...">
+
+<!-- Add a button to export the table to CSV -->
+<button onclick="exportToCSV()">Export to CSV</button>
+
+<!-- Add a reset button -->
+<button onclick="resetTable()">Reset Table</button>
+
+<!-- Include a modal for adding new products -->
+<div id="addProductModal" class="modal">
+  <!-- Modal content -->
+</div>
+
+<script>
+// ... (existing code)
+
+// Function to filter the table
+function filterTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchBar");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("productTable");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+// Function to add a new product
+function addProduct() {
+  // Implementation for modal and adding new product
+}
+
+// Function to reset the table
+function resetTable() {
+  // Implementation to reset the table
+}
+
+// Function to export table to CSV
+function exportToCSV() {
+  // Implementation to export table to CSV
+}
+
+// ... (rest of the existing code)
+</script>
     <h1>Product Calculator</h1>
 
     <table id="productTable">
