@@ -105,7 +105,16 @@ th, td {
     });
     document.getElementById('grandTotalTextArea').value = grandTotal.toFixed(2);
   }
-
+function saveTable() {
+      let json = JSON.stringify(tableData);
+      let blob = new Blob([json], {type: "application/json"});
+      let url = URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "day2.json";
+      a.click();
+    }
+/*
   // Function to save the table data to a JSON file
   function saveTable() {
     const tableData = [];
@@ -137,6 +146,8 @@ th, td {
     console.log(jsonData);
     // In a real application, you would send this data to your server to save it.
   }
+*/
+
 </script>
 
 </body>
