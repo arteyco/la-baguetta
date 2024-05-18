@@ -1,95 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Product Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Product Table</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- Add a search bar above the table -->
-<input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for products...">
+  <h1>Product Table</h1>
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>P3</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      </tbody>
+  </table>
 
-<!-- Add a button to export the table to CSV -->
-<button onclick="exportToCSV()">Export to CSV</button>
+  <button onclick="calculateGrandTotal()">Calculate Grand Total</button>
+  <textarea id="grandTotalArea" readonly></textarea> <br>
 
-<!-- Add a reset button -->
-<button onclick="resetTable()">Reset Table</button>
+  <button onclick="saveTable()">Save Table</button>
 
-<!-- Include a modal for adding new products -->
-<div id="addProductModal" class="modal">
-  <!-- Modal content -->
-</div>
+  <h2>AI Chat</h2>
+  <div id="chat-container">
+    <div id="chat-history"></div>
+    <input type="text" id="user-input" placeholder="Ask about your data...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
 
-<script>
-// ... (existing code)
-
-// Function to filter the table
-function filterTable() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("searchBar");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("productTable");
-  tr = table.getElementsByTagName("tr");
-
-  for (i = 1; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-
-// Function to add a new product
-function addProduct() {
-  // Implementation for modal and adding new product
-}
-
-// Function to reset the table
-function resetTable() {
-  // Implementation to reset the table
-}
-
-// Function to export table to CSV
-function exportToCSV() {
-  // Implementation to export table to CSV
-}
-
-// ... (rest of the existing code)
-</script>
-    <h1>Product Calculator</h1>
-
-    <table id="productTable">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>P1</th>
-                <th>P2</th>
-                <th>P3</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            </tbody>
-    </table>
-
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="calculateGrandTotal()">Calculate Grand Total</button>
-
-    <h2>Grand Total:</h2>
-    <textarea id="grandTotalArea" readonly></textarea>
-
-    <h2>AI Chat</h2>
-    <div id="chat-container">
-        <textarea id="chat-input" placeholder="Enter your message"></textarea>
-        <button onclick="sendMessage()">Send</button>
-        <div id="chat-history"></div>
-    </div>
-
-    <script src="/js/script4.js"></script>
-    <script src="js/langchain-config.js"></script>
+  <script src="js/script4.js"></script> 
 </body>
 </html>
