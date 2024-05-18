@@ -1,31 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Table</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>My Web Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table id="editableTable">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>P1</th>
-                <th>P2</th>
-                <th>P3</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table rows will be dynamically added here -->
-        </tbody>
-    </table>
-
-    <textarea id="grandTotal"></textarea>
-
-    <button onclick="saveTable()">Save Table</button>
-
-    <script src="js/script4.js"></script>
+  <h1>Product Table</h1>
+  <table id="product-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>P3</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" id="product-0"></td>
+        <td><input type="number" id="p1-0"></td>
+        <td><input type="number" id="p2-0"></td>
+        <td><input type="number" id="p3-0"></td>
+        <td><span id="total-0"></span></td>
+      </tr>
+      <tr>
+        <td><input type="text" id="product-1"></td>
+        <td><input type="number" id="p1-1"></td>
+        <td><input type="number" id="p2-1"></td>
+        <td><input type="number" id="p3-1"></td>
+        <td><span id="total-1"></span></td>
+      </tr>
+      <tr>
+        <td><input type="text" id="product-2"></td>
+        <td><input type="number" id="p1-2"></td>
+        <td><input type="number" id="p2-2"></td>
+        <td><input type="number" id="p3-2"></td>
+        <td><span id="total-2"></span></td>
+      </tr>
+      <tr>
+        <td><input type="text" id="product-3"></td>
+        <td><input type="number" id="p1-3"></td>
+        <td><input type="number" id="p2-3"></td>
+        <td><input type="number" id="p3-3"></td>
+        <td><span id="total-3"></span></td>
+      </tr>
+      <tr>
+        <td><input type="text" id="product-4"></td>
+        <td><input type="number" id="p1-4"></td>
+        <td><input type="number" id="p2-4"></td>
+        <td><input type="number" id="p3-4"></td>
+        <td><span id="total-4"></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="save-table">Save Table</button>
+  <h2>Grand Total</h2>
+  <textarea id="grand-total"></textarea>
+  <script src="js/script4.js"></script>
 </body>
 </html>
