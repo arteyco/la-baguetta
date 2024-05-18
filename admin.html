@@ -22,7 +22,7 @@ th, td {
 </head>
 <body>
 
-<h2>Cuentas Diarias</h2>
+<h2>CUENTAS DIARIAS</h2>
 
 <table>
   <thead>
@@ -105,48 +105,8 @@ th, td {
     });
     document.getElementById('grandTotalTextArea').value = grandTotal.toFixed(2);
   }
-function saveTable() {
-      let json = JSON.stringify(tableData);
-      let blob = new Blob([json], {type: "application/json"});
-      let url = URL.createObjectURL(blob);
-      let a = document.createElement("a");
-      a.href = url;
-      a.download = "day2.json";
-      a.click();
-    }
-/*
-  // Function to save the table data to a JSON file
-  function saveTable() {
-    const tableData = [];
-    const rows = productTableBody.querySelectorAll('tr');
-    rows.forEach(row => {
-      tableData.push({
-        date: row.cells[0].querySelector('input').value,
-        product: row.cells[1].querySelector('input').value,
-        p1: parseFloat(row.cells[2].querySelector('input').value) || 0,
-        p2: parseFloat(row.cells[3].querySelector('input').value) || 0,
-        p3: parseFloat(row.cells[4].querySelector('input').value) || 0,
-        total: parseFloat(row.cells[5].textContent)
-      });
-    });
 
-    function saveTable() {
-      let json = JSON.stringify(tableData);
-      let blob = new Blob([json], {type: "application/json"});
-      let url = URL.createObjectURL(blob);
-      let a = document.createElement("a");
-      a.href = url;
-      a.download = "day2.json";
-      a.click();
-    }
- //   const jsonData = JSON.stringify(tableData);
-
-    // Here you would typically use a server-side language to handle file saving.
-    // For this example, we'll just log the JSON data to the console.
-    console.log(jsonData);
-    // In a real application, you would send this data to your server to save it.
-  }
-*/
+  
 
 </script>
 
