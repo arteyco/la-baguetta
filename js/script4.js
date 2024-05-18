@@ -29,9 +29,17 @@ function updateTotals() {
   const grandTotal = calculateGrandTotal();
   document.getElementById("grand-total").value = grandTotal.toFixed(2);
 }
-
-// Save the table to a local file
 function saveTable() {
+      let json = JSON.stringify(tableData);
+      let blob = new Blob([json], {type: "application/json"});
+      let url = URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "day2.json";
+      a.click();
+    }
+// Save the table to a local file
+function saveTable2() {
   const table = [];
   for (let i = 0; i < 5; i++) {
     const product = document.getElementById(`product-${i}`).value;
@@ -45,6 +53,8 @@ function saveTable() {
   const json = JSON.stringify(table);
   localStorage.setItem("day5", json);
 }
+
+
 
 // Load the table from the local file
 function loadTable() {
