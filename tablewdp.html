@@ -4,10 +4,11 @@
   <title>Product Table</title>
   <style>
 body{
-background-color: ligthorange;
+background-color: orange;
 }
     table {
       border-collapse: collapse;
+      background-color: lightorange;
     }
     th, td {
       border: 1px solid #ddd;
@@ -29,7 +30,7 @@ background-color: ligthorange;
     </tr>
     <tr>
       <td><input type="date" id="date1" value="2022-01-01"></td>
-      <td><input type="text" id="product1" value="Product 1"></td>
+      <td><input type="text" id="BLANDITO" value="Product 1"></td>
       <td><input type="number" id="p11" value="10"></td>
       <td><input type="number" id="p21" value="20"></td>
       <td><input type="number" id="p31" value="3"></td>
@@ -37,7 +38,7 @@ background-color: ligthorange;
     </tr>
     <tr>
       <td><input type="date" id="date2" value="2022-01-02"></td>
-      <td><input type="text" id="product2" value="Product 2"></td>
+      <td><input type="text" id="BAGUETTE" value="Product 2"></td>
       <td><input type="number" id="p12" value="15"></td>
       <td><input type="number" id="p22" value="25"></td>
       <td><input type="number" id="p32" value="4"></td>
@@ -45,16 +46,20 @@ background-color: ligthorange;
     </tr>
     <tr>
       <td><input type="date" id="date3" value="2022-01-03"></td>
-      <td><input type="text" id="product3" value="Product 3"></td>
+      <td><input type="text" id="PAN-COCO" value="Product 3"></td>
       <td><input type="number" id="p13" value="20"></td>
       <td><input type="number" id="p23" value="30"></td>
       <td><input type="number" id="p33" value="5"></td>
       <td id="total3"></td>
     </tr>
   </table>
+<div>  
+    <textarea id="grand-total" rows="1" cols="20" readonly></textarea>
+  </div>
+
   <button onclick="calculateTotals()">Calculate Totals</button>
   <button onclick="saveTable()">Save Table</button>
-  <textarea id="grand-total" rows="1" cols="20" readonly></textarea>
+  
 
   <script>
     let tableData = [];
