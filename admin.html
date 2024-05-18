@@ -116,6 +116,15 @@ th, td {
       });
     });
 
+    function saveTable() {
+      let json = JSON.stringify(tableData);
+      let blob = new Blob([json], {type: "application/json"});
+      let url = URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "day2.json";
+      a.click();
+    }
     const jsonData = JSON.stringify(tableData);
 
     // Here you would typically use a server-side language to handle file saving.
