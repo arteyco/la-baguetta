@@ -59,6 +59,7 @@ background-color: orange;
 
   <button onclick="calculateTotals()">Calculate Totals</button>
   <button onclick="saveTable()">Save Table</button>
+  <button onclick="calculateGrandTotal()">CalcGrnadTotal</button>
   
 
   <script>
@@ -70,7 +71,7 @@ background-color: orange;
         let p2 = document.getElementById(`p2${i}`).value;
         let p3 = document.getElementById(`p3${i}`).value;
         let total = (parseInt(p1) + parseInt(p2)) * parseInt(p3);
-        document.getElementById(`total${i}`).innerHTML = total.toFixed(8);
+        document.getElementById(`total${i}`).innerHTML = total.toFixed(2);
         tableData.push({
           date: document.getElementById(`date${i}`).value,
           product: document.getElementById(`product${i}`).value,
@@ -80,7 +81,7 @@ background-color: orange;
           total: total
         });
       }
-      calculateGrandTotal();
+     // calculateGrandTotal();
     }
 
     function calculateGrandTotal() {
