@@ -33,7 +33,7 @@
         <!-- Example rows; you can add more as needed -->
         <tr>
             <td>1</td>
-            <td>Product 1</td>
+            <td>Blandito</td>
             <td><input type="number" value="10" class="p1"></td>
             <td><input type="number" value="2" class="p2"></td>
             <td><input type="number" value="3" class="p3"></td>
@@ -41,7 +41,15 @@
         </tr>
         <tr>
             <td>2</td>
-            <td>Product 2</td>
+            <td>Baguette</td>
+            <td><input type="number" value="5" class="p1"></td>
+            <td><input type="number" value="4" class="p2"></td>
+            <td><input type="number" value="1" class="p3"></td>
+            <td class="total">0.0</td>
+        </tr>
+         <tr>
+            <td>3</td>
+            <td>Torta</td>
             <td><input type="number" value="5" class="p1"></td>
             <td><input type="number" value="4" class="p2"></td>
             <td><input type="number" value="1" class="p3"></td>
@@ -56,6 +64,7 @@
 <button onclick="calculateTotal()">Calculate Total</button>
 <button onclick="calculateSum()">Calculate Sum</button>
 <button onclick="calculateAverage()">Calculate Average</button>
+<button onclick="downloadTable()">Download Table</button>
 
 <br><br>
 
@@ -105,6 +114,32 @@
 
         let average = sum / count;
         document.getElementById('averageOutput').value = `Average of totals: ${average.toFixed(2)}`;
+    }
+
+    function downloadTable() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        let csvContent = '';
+
+        for (let i = 0; i < rows.length; i++) {
+            let cells = rows[i].cells;
+            let row = [];
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].querySelector('input')) {
+                    row.push(cells[j].querySelector('input').value);
+                } else {
+                    row.push(cells[j].textContent);
+                }
+            }
+            csvContent += row.join(',') + '\n';
+        }
+
+        let blob = new Blob([csvContent], { type: 'text/csv' });
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('download', 'product_table.csv');
+        a.click();
     }
 </script>
 
