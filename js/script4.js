@@ -54,7 +54,31 @@ function saveTable2() {
   localStorage.setItem("day5", json);
 }
 
+    function calculateSum() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        let sum = 0;
 
+        for (let i = 1; i < rows.length; i++) { // Skipping header row
+            let total = parseFloat(rows[i].cells[5].textContent);
+            sum += total;
+        }
+
+    function calculateAverage() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 1; i < rows.length; i++) { // Skipping header row
+            let total = parseFloat(rows[i].cells[5].textContent);
+            sum += total;
+            count++;
+        }
+
+        let average = sum / count;
+        document.getElementById('averageOutput').value = `Average of totals: ${average.toFixed(2)}`;
+    }
 
 // Load the table from the local file
 function loadTable() {
