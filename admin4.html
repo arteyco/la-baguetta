@@ -1,62 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>La Baguetta Web Page</title>
-  <link rel="stylesheet" href="css/style4.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>CUENTAS DIARIAS</h1>
-  <table id="product-table">
+
+<h2>Product Table</h2>
+
+<table id="productTable">
     <thead>
-      <tr>
-        <th>Product</th>
-        <th>P1</th>
-        <th>P2</th>
-        <th>P3</th>
-        <th>Total</th>
-      </tr>
+        <tr>
+            <th>ID</th>
+            <th>PRODUCT</th>
+            <th>P1</th>
+            <th>P2</th>
+            <th>P3</th>
+            <th>TOTAL</th>
+        </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><input type="text" id="product-0"></td>
-        <td><input type="number" id="p1-0"></td>
-        <td><input type="number" id="p2-0"></td>
-        <td><input type="number" id="p3-0"></td>
-        <td><span id="total-0"></span></td>
-      </tr>
-      <tr>
-        <td><input type="text" id="product-1"></td>
-        <td><input type="number" id="p1-1"></td>
-        <td><input type="number" id="p2-1"></td>
-        <td><input type="number" id="p3-1"></td>
-        <td><span id="total-1"></span></td>
-      </tr>
-      <tr>
-        <td><input type="text" id="product-2"></td>
-        <td><input type="number" id="p1-2"></td>
-        <td><input type="number" id="p2-2"></td>
-        <td><input type="number" id="p3-2"></td>
-        <td><span id="total-2"></span></td>
-      </tr>
-      <tr>
-        <td><input type="text" id="product-3"></td>
-        <td><input type="number" id="p1-3"></td>
-        <td><input type="number" id="p2-3"></td>
-        <td><input type="number" id="p3-3"></td>
-        <td><span id="total-3"></span></td>
-      </tr>
-      <tr>
-        <td><input type="text" id="product-4"></td>
-        <td><input type="number" id="p1-4"></td>
-        <td><input type="number" id="p2-4"></td>
-        <td><input type="number" id="p3-4"></td>
-        <td><span id="total-4"></span></td>
-      </tr>
+        <!-- Example rows; you can add more as needed -->
+        <tr>
+            <td>1</td>
+            <td>Product 1</td>
+            <td><input type="number" value="10" class="p1"></td>
+            <td><input type="number" value="2" class="p2"></td>
+            <td><input type="number" value="3" class="p3"></td>
+            <td class="total">0.0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Product 2</td>
+            <td><input type="number" value="5" class="p1"></td>
+            <td><input type="number" value="4" class="p2"></td>
+            <td><input type="number" value="1" class="p3"></td>
+            <td class="total">0.0</td>
+        </tr>
+        <!-- Add more rows as needed -->
     </tbody>
-  </table>
-  <button id="save-table">Save Table</button>
-  <h2>Grand Total</h2>
-  <textarea id="grand-total"></textarea>
-  <script src="js/script4.js"></script>
+</table>
+
+<br>
+
+<button onclick="calculateTotal()">Calculate Total</button>
+<button onclick="calculateSum()">Calculate Sum</button>
+<button onclick="calculateAverage()">Calculate Average</button>
+
+<br><br>
+
+<textarea id="sumOutput" rows="4" cols="50" readonly></textarea>
+<br>
+<textarea id="averageOutput" rows="4" cols="50" readonly></textarea>
+
+<script>
+    function calculateTotal() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        
+        for (let i = 1; i < rows.length; i++) { // Skipping header row
+            let cells = rows[i].cells;
+            let p1 = parseFloat(cells[2].querySelector('input').value);
+            let p2 = parseFloat(cells[3].querySelector('input').value);
+            let p3 = parseFloat(cells[4].querySelector('input').value);
+            let total = p1 + (p2 * p3);
+            cells[5].textContent = total.toFixed(2);
+        }
+    }
+
+    function calculateSum() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        let sum = 0;
+
+        for (let i = 1; i < rows.length; i++) { // Skipping header row
+            let total = parseFloat(rows[i].cells[5].textContent);
+            sum += total;
+        }
+
+        document.getElementById('sumOutput').value = `Sum of totals: ${sum.toFixed(2)}`;
+    }
+
+    function calculateAverage() {
+        let table = document.getElementById('productTable');
+        let rows = table.rows;
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 1; i < rows.length; i++) { // Skipping header row
+            let total = parseFloat(rows[i].cells[5].textContent);
+            sum += total;
+            count++;
+        }
+
+        let average = sum / count;
+        document.getElementById('averageOutput').value = `Average of totals: ${average.toFixed(2)}`;
+    }
+</script>
+
 </body>
 </html>
