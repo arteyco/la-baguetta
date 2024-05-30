@@ -44,8 +44,17 @@ th, td {
 <textarea id="grandTotalTextArea" readonly></textarea>
 
 <br>
+<br>
 
-<button onclick="saveTable()">Save Table</button>
+<button onclick="calculateTotal()">Calculate Total</button>
+<button onclick="calculateSum()">Calculate Sum</button>
+<button onclick="calculateAverage()">Calculate Average</button>
+
+<br><br>
+
+<textarea id="sumOutput" rows="4" cols="50" readonly></textarea>
+<br>
+<textarea id="averageOutput" rows="4" cols="50" readonly></textarea><button onclick="saveTable()">Save Table</button>
 
 <script>
   // Initialize table with 3 rows
