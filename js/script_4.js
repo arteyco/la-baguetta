@@ -12,9 +12,9 @@ function calculateTotal() {
     const rows = tableBody.rows;
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        const p1 = parseInt(row.cells[2].textContent);
-        const p2 = parseInt(row.cells[3].textContent);
-        const p3 = parseInt(row.cells[4].textContent);
+        const p1 = parseInt(row.cells[3].textContent);
+        const p2 = parseInt(row.cells[4].textContent);
+        const p3 = parseInt(row.cells[5].textContent);
         const total = p1 + p2 * p3;
         row.cells[5].textContent = total.toString();
     }
@@ -59,11 +59,12 @@ function saveToJson() {
         const row = rows[i];
         const date = row.cells[0].textContent;
         const id = parseInt(row.cells[1].textContent);
-        const p1 = parseInt(row.cells[2].textContent);
-        const p2 = parseInt(row.cells[3].textContent);
-        const p3 = parseInt(row.cells[4].textContent);
-        const total = parseInt(row.cells[5].textContent);
-        data.push({ date, id, p1, p2, p3, total });
+        const producto = row.cells[2].textContent;
+        const p1 = parseInt(row.cells[3].textContent);
+        const p2 = parseInt(row.cells[4].textContent);
+        const p3 = parseInt(row.cells[5].textContent);
+        const total = parseInt(row.cells[6].textContent);
+        data.push({ date, id, producto, p1, p2, p3, total });
     }
     const json = JSON.stringify(data, null, 2);
     const file = new Blob([json], { type: 'application/json' });
