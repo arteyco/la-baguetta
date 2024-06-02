@@ -72,48 +72,6 @@ function saveToJson() {
     link.download = 'day4.json';
     link.click();
 }
-// Load the data
-d3.json("day4.json").then((data) => {
-  // Set up the SVG
-  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-  const width = 500 - margin.left - margin.right;
-  const height = 300 - margin.top - margin.bottom;
-
-  const svg = d3.select("body")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-  // Scale the data
-  const xScale = d3.scaleBand()
-    .domain(data.map((d) => d.id))
-    .range([0, width])
-    .padding(0.2);
-
-  const yScale = d3.scaleLinear()
-    .domain([0, d3.max(data, (d) => d.total)])
-    .range([height, 0]);
-
-  // Add the bars
-  svg.selectAll("rect")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("x", (d) => xScale(d.id))
-    .attr("y", (d) => yScale(d.total))
-    .attr("width", xScale.bandwidth())
-    .attr("height", (d) => height - yScale(d.total));
-
-  // Add the axes
-  svg.append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(xScale));
-
-  svg.append("g")
-    .call(d3.axisLeft(yScale));
-});
 // Add event listeners
 calculateTotalButton.addEventListener('click', calculateTotal);
 calculateTotalSumButton.addEventListener('click', calculateTotalSum);
