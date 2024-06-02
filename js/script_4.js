@@ -16,7 +16,7 @@ function calculateTotal() {
         const p2 = parseInt(row.cells[4].textContent);
         const p3 = parseInt(row.cells[5].textContent);
         const total = p1 + p2 * p3;
-        row.cells[5].textContent = total.toString();
+        row.cells[6].textContent = total.toString();
     }
 }
 
@@ -27,7 +27,7 @@ function calculateTotalSum() {
     const rows = tableBody.rows;
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        const total = parseInt(row.cells[5].textContent);
+        const total = parseInt(row.cells[6].textContent);
         sum += total;
     }
     outputArea.value = `Total Sum: ${sum}`;
