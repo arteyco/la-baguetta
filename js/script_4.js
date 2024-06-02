@@ -3,6 +3,7 @@ const table = document.getElementById('myTable');
 const calculateTotalButton = document.getElementById('calculateTotal');
 const calculateTotalSumButton = document.getElementById('calculateTotalSum');
 const calculateTotalAverageButton = document.getElementById('calculateTotalAverage');
+
 const outputArea = document.getElementById('outputArea');
 
 // Function to calculate total for each row
@@ -118,3 +119,4 @@ calculateTotalButton.addEventListener('click', calculateTotal);
 calculateTotalSumButton.addEventListener('click', calculateTotalSum);
 calculateTotalAverageButton.addEventListener('click', calculateTotalAverage);
 document.getElementById('saveToJson').addEventListener('click', saveToJson);
+
