@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+<form>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  
+  <label for="confirmPassword">Confirm Password:</label>
+  <input type="password" id="confirmPassword" name="confirmPassword" required>
+  
+  <button type="submit">Submit</button>
+</form>
 <head>
     <title>Product Table</title>
     <style>
@@ -66,6 +75,13 @@
     <textarea id="total-sum" readonly></textarea>
     <textarea id="total-average" readonly></textarea>
 </br>
+    <script>
+        const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+
+passwordInput.addEventListener('input', validatePassword);
+confirmPasswordInput.addEventListener('input', validatePassword);
+    </script>
     
     <script src="js/script_1.js"></script>
     <script src="js/script_2.js"></script>
