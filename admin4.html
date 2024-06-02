@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web Page with Table</title>
+    <title>Table Operations</title>
     <style>
         body {
             background-color: aquamarine;
         }
     </style>
-    <script src="public/js/day4.js"></script>
 </head>
 <body>
+    <h1>Table Operations</h1>
     <table id="myTable">
         <thead>
             <tr>
@@ -21,99 +21,46 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Table rows will be dynamically added here -->
+        <tbody id="tableBody">
+            <tr>
+                <td>2024-06-02</td>
+                <td>1</td>
+                <td>10</td>
+                <td>5</td>
+                <td>2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2024-06-02</td>
+                <td>2</td>
+                <td>15</td>
+                <td>3</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2024-06-02</td>
+                <td>3</td>
+                <td>8</td>
+                <td>6</td>
+                <td>3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2024-06-02</td>
+                <td>4</td>
+                <td>12</td>
+                <td>4</td>
+                <td>5</td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
-
-    <button onclick="calculateTotal()">Calculate Total</button>
-    <button onclick="calculateTotalSum()">Calculate Total Sum</button>
-    <button onclick="calculateTotalAverage()">Calculate Total Average</button>
-    <button onclick="saveToJson()">Save to JSON</button>
-
-    <script>
-        function calculateTotal() {
-            // Get the table rows
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-
-            // Loop through the rows and calculate the total for each row
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var p1 = parseInt(row.cells[2].innerHTML);
-                var p2 = parseInt(row.cells[3].innerHTML);
-                var p3 = parseInt(row.cells[4].innerHTML);
-                var total = p1 + p2 * p3;
-                row.cells[5].innerHTML = total;
-            }
-        }
-
-        function calculateTotalSum() {
-            // Get the table rows
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-
-            // Calculate the sum of the totals
-            var sum = 0;
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var total = parseInt(row.cells[5].innerHTML);
-                sum += total;
-            }
-
-            // Display the sum
-            alert("Total Sum: " + sum);
-        }
-
-        function calculateTotalAverage() {
-            // Get the table rows
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-
-            // Calculate the average of the totals
-            var sum = 0;
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var total = parseInt(row.cells[5].innerHTML);
-                sum += total;
-            }
-            var average = sum / (rows.length - 1);
-
-            // Display the average
-            alert("Total Average: " + average);
-        }
-
-        function saveToJson() {
-            // Get the table rows
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-
-            // Create an array to store the table data
-            var data = [];
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var rowData = {
-                    date: row.cells[0].innerHTML,
-                    id: parseInt(row.cells[1].innerHTML),
-                    p1: parseInt(row.cells[2].innerHTML),
-                    p2: parseInt(row.cells[3].innerHTML),
-                    p3: parseInt(row.cells[4].innerHTML),
-                    total: parseInt(row.cells[5].innerHTML)
-                };
-                data.push(rowData);
-            }
-
-            // Convert the data to JSON
-            var jsonData = JSON.stringify(data);
-
-            // Save the JSON data to a file (day4.json)
-            // You'll need to handle the file saving process on the server-side
-            // Here's an example of how you can send the JSON data to the server using AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/saveToJson", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(jsonData);
-        }
-    </script>
+    <button id="calculateTotal">Calculate Total</button>
+    <button id="calculateTotalSum">Calculate Total Sum</button>
+    <button id="calculateTotalAverage">Calculate Total Average</button>
+    <textarea id="outputArea"></textarea>
+    <button id="saveToJson">Save to JSON</button>
+    <script src="js/script_5.js"></script>
 </body>
 </html>
