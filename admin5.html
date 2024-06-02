@@ -82,6 +82,26 @@ const confirmPasswordInput = document.getElementById('confirmPassword');
 passwordInput.addEventListener('input', validatePassword);
 confirmPasswordInput.addEventListener('input', validatePassword);
     </script>
+  <script>
+function validatePassword() {
+  const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
+  
+  // Check if password meets requirements
+  const isValid = password.length >= 8 &&
+                  /[a-z]/.test(password) &&
+                  /[A-Z]/.test(password) &&
+                  /\d/.test(password) &&
+                  /[^A-Za-z\d]/.test(password);
+  
+  // Check if password and confirm password match
+  const doMatch = password === confirmPassword;
+  
+  // Update the form validity
+  passwordInput.setCustomValidity(isValid ? '' : 'Password is invalid');
+  confirmPasswordInput.setCustomValidity(doMatch ? '' : 'Passwords do not match');
+}
+  </script>
     
     <script src="js/script_1.js"></script>
     <script src="js/script_2.js"></script>
