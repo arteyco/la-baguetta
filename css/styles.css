@@ -4,6 +4,7 @@ body {
 }
 
 #myTable {
+    width: 100%;
     background-color: yellow;
     border-collapse: collapse;
 }
