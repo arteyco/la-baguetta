@@ -1,24 +1,95 @@
-window.onload = function() {
-    var table = document.getElementById("myTable");
+// script.js
+// Create the table rows dynamically
+let tableBody = document.getElementById('table-body');
+for (let i = 0; i < 30; i++) {
+    let row = document.createElement('tr');
+    for (let j = 0; j < 7; j++) {
+        let cell = document.createElement('td');
+        if (j === 0) {
+            cell.innerHTML = i + 1;
+        } else if (j === 1) {
+            cell.innerHTML = new Date().toDateString();
+        } else if (j === 2) {
+            cell.innerHTML = 'Product ' + (i + 1);
+        } else if (j === 3) {
+            cell.innerHTML = i + 1;
+        } else if (j === 4) {
+            cell.innerHTML = i + 2;
+        } else if (j === 5) {
+            cell.innerHTML = i + 3;
+        } else {
+            cell.innerHTML = '';
+        }
+        row.appendChild(cell);
+    }
+    tableBody.appendChild(row);
+}
 
-    // Create table structure here
-    // For example, you can use table.insertRow() and table.rows[i].insertCell() methods
+// Calculate total for each row
+document.getElementById('calculateTotal').addEventListener('click', calculateTotal);
 
-    document.getElementById("calculateTotalButton").addEventListener("click", function() {
-        // Calculate total for each row and update the total column
-        // For example, you can use table.rows[i].cells[j].innerHTML to access and update cell contents
-    });
+function calculateTotal() {
+    let table = document.getElementById('myTable');
+    let rows = table.rows;
+    for (let i = 1; i < rows.length; i++) {
+        let p1 = parseInt(rows[i].cells[3].innerHTML);
+        let p2 = parseInt(rows[i].cells[4].innerHTML);
+        let p3 = parseInt(rows[i].cells[5].innerHTML);
+        let total = p1 + p2 * p3;
+        rows[i].cells[6].innerHTML = total;
+    }
+}
 
-    document.getElementById("calculateTotalSumButton").addEventListener("click", function() {
-        // Calculate total sum and update the totalSumOutput textarea
-        // For example, you can use document.getElementById("totalSumOutput").innerHTML to update the textarea
-    });
+// Calculate total sum
+document.getElementById('calculateTotalSum').addEventListener('click', calculateTotalSum);
 
-    document.getElementById("calculateTotalAverageButton").addEventListener("click", function() {
-        // Calculate total average and update the totalAverageOutput textarea
-        // For example, you can use document.getElementById("totalAverageOutput").innerHTML to update the textarea
-    });
+function calculateTotalSum() {
+    let table = document.getElementById('myTable');
+    let rows = table.rows;
+    let totalSum = 0;
+    for (let i = 1; i < rows.length; i++) {
+        let total = parseInt(rows[i].cells[6].innerHTML);
+        totalSum += total;
+    }
+    document.getElementById('totalSumOutput').value = totalSum;
+}
 
-    // Function for saving the table to a JSON file
-    // This is a complex operation that involves server-side operations, so it's not included here
+// Calculate total average
+document.getElementById('calculateTotalAverage').addEventListener('click', calculateTotalAverage);
+
+function calculateTotalAverage() {
+    let table = document.getElementById('myTable');
+    let rows = table.rows;
+    let totalSum = 0;
+    let count = 0;
+    for (let i = 1; i < rows.length; i++) {
+        let total = parseInt(rows[i].cells[6].innerHTML);
+        totalSum += total;
+        count++;
+    }
+    let totalAverage = totalSum / count;
+    document.getElementById('totalAverageOutput').value = totalAverage;
+}
+
+// Save to JSON
+document.getElementById('saveToJson').addEventListener('click', saveToJson);
+
+function saveToJson() {
+    let table = document.getElementById('myTable');
+    let rows = table.rows;
+    let data = [];
+    for (let i = 1; i < rows.length; i++) {
+        let row = {
+            id: parseInt(rows[i].cells[0].innerHTML),
+            date: rows[i].cells[1].innerHTML,
+            product: rows[i].cells[2].innerHTML,
+            p1: parseInt(rows[i].cells[3].innerHTML),
+            p2: parseInt(rows[i].cells[4].innerHTML),
+            p3: parseInt(rows[i].cells[5].innerHTML),
+            total: parseInt(rows[i].cells[6].innerHTML)
+        };
+        data.push(row);
+    }
+    let json = JSON.stringify(data, null, 4);
+    localStorage.setItem('day4.json', json);
 }
