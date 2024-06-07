@@ -1,43 +1,4 @@
 // scriptwdp.js
-// Define the columns
-const columns = [
-    {
-        dataField: 'id',
-        text: 'ID',
-        editable: false
-    },
-    {
-        dataField: 'date',
-        text: 'Date',
-        editable: false
-    },
-    {
-        dataField: 'product',
-        text: 'Product',
-        editable: false
-    },
-    {
-        dataField: 'p1',
-        text: 'P1',
-        editable: true
-    },
-    {
-        dataField: 'p2',
-        text: 'P2',
-        editable: true
-    },
-    {
-        dataField: 'p3',
-        text: 'P3',
-        editable: true
-    },
-    {
-        dataField: 'total',
-        text: 'Total',
-        editable: false
-    }
-];
-
 // Create the table rows dynamically
 let tableBody = document.getElementById('table-body');
 for (let i = 0; i < 30; i++) {
@@ -128,6 +89,24 @@ function saveToJson() {
             total: parseInt(rows[i].cells[6].innerHTML)
         };
         data.push(row);
+
+        // Function to make columns editable
+function makeColsEditable() {
+    let table = document.getElementById('myTable');
+    let rows = table.rows;
+    for (let i = 1; i < rows.length; i++) {
+        rows[i].cells[3].contentEditable = 'true'; // p1
+        rows[i].cells[4].contentEditable = 'true'; // p2
+        rows[i].cells[5].contentEditable = 'true'; // p3
+    }
+}
+
+// Add an "Edit" button
+let editButton = document.createElement('button');
+editButton.innerHTML = 'Edit';
+editButton.addEventListener('click', makeColsEditable);
+document.body.appendChild(editButton);
+
     }
    // let json = JSON.stringify(data, null, 4);
   //  localStorage.setItem('day4.json', json);
