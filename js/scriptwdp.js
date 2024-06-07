@@ -101,13 +101,13 @@ function makeColsEditable() {
         rows[i].cells[5].contentEditable = 'true'; // p3
     }
 }
-
+/**
 // Add an "Edit" button
 let editButton = document.createElement('button');
 editButton.innerHTML = 'Edit';
 editButton.addEventListener('click', makeColsEditable);
 document.body.appendChild(editButton);
-
+*/
     }
    // let json = JSON.stringify(data, null, 4);
   //  localStorage.setItem('day4.json', json);
