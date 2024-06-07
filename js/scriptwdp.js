@@ -12,7 +12,7 @@ for (let i = 0; i < 30; i++) {
         } else if (j === 2) {
             cell.innerHTML = 'Product ' + (i + 1);
         } else if (j === 3) {            
-            cell.innerHTML = i + 1;
+            cell.innerHTML = 10;
            cell.contentEditable = 'true';           
         } else if (j === 4) {            
             cell.innerHTML = i + 2;
