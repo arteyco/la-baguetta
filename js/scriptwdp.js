@@ -1,4 +1,43 @@
-// script.js
+// scriptwdp.js
+// Define the columns
+const columns = [
+    {
+        dataField: 'id',
+        text: 'ID',
+        editable: false
+    },
+    {
+        dataField: 'date',
+        text: 'Date',
+        editable: false
+    },
+    {
+        dataField: 'product',
+        text: 'Product',
+        editable: false
+    },
+    {
+        dataField: 'p1',
+        text: 'P1',
+        editable: true
+    },
+    {
+        dataField: 'p2',
+        text: 'P2',
+        editable: true
+    },
+    {
+        dataField: 'p3',
+        text: 'P3',
+        editable: true
+    },
+    {
+        dataField: 'total',
+        text: 'Total',
+        editable: false
+    }
+];
+
 // Create the table rows dynamically
 let tableBody = document.getElementById('table-body');
 for (let i = 0; i < 30; i++) {
