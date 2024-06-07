@@ -1,106 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Product Table</title>
-  <style>      
-body{
-background-color: orange;
-}
-    table {
-      border-collapse: collapse;
-      background-color: yellow;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-  </style>
+    <title>Table Operations</title>
+    <style>
+        body {
+            background-color: orange;
+        }
+        table {
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
-  <h1>Product Table</h1>
-  <table id="CUENTAS DIARIAS">
-    <tr>
-      <th>Date</th>
-      <th>Product</th>
-      <th>P1</th>
-      <th>P2</th>
-      <th>P3</th>
-      <th>Total</th>
-    </tr>
-    <tr>
-      <td><input type="date" id="date1" value="2022-01-01"></td>
-      <td><input type="text" id="BLANDITO" value="Product 1"></td>
-      <td><input type="number" id="p11" value="10"></td>
-      <td><input type="number" id="p21" value="20"></td>
-      <td><input type="number" id="p31" value="3"></td>
-      <td id="total1"></td>
-    </tr>
-    <tr>
-      <td><input type="date" id="date2" value="2022-01-02"></td>
-      <td><input type="text" id="BAGUETTE" value="Product 2"></td>
-      <td><input type="number" id="p12" value="15"></td>
-      <td><input type="number" id="p22" value="25"></td>
-      <td><input type="number" id="p32" value="4"></td>
-      <td id="total2"></td>
-    </tr>
-    <tr>
-      <td><input type="date" id="date3" value="2022-01-03"></td>
-      <td><input type="text" id="PAN-COCO" value="Product 3"></td>
-      <td><input type="number" id="p13" value="20"></td>
-      <td><input type="number" id="p23" value="30"></td>
-      <td><input type="number" id="p33" value="5"></td>
-      <td id="total3"></td>
-    </tr>
-  </table>
-<div>  
-    <textarea id="grand-total" rows="1" cols="20" readonly></textarea>
-  </div>
+    <table id="myTable">
+        <!-- Table structure goes here -->
+    </table>
+    <button id="calculateTotalButton">Calculate Total</button>
+    <button id="calculateTotalSumButton">Calculate Total Sum</button>
+    <button id="calculateTotalAverageButton">Calculate Total Average</button>
+    <textarea id="totalSumOutput"></textarea>
+    <textarea id="totalAverageOutput"></textarea>
 
-  <button onclick="calculateTotals()">Calculate Totals</button>
-  <button onclick="saveTable()">Save Table</button>
-  <button onclick="calculateGrandTotal()">CalcGrnadTotal</button>
-  
-
-  <script>
-    let tableData = [];
-
-    function calculateTotals() {
-      for (let i = 1; i <= 9; i++) {
-        let p1 = document.getElementById(`p1${i}`).value;
-        let p2 = document.getElementById(`p2${i}`).value;
-        let p3 = document.getElementById(`p3${i}`).value;
-        let total = (parseInt(p1) + parseInt(p2)) * parseInt(p3);
-        document.getElementById(`total${i}`).innerHTML = total.toFixed(2);
-        tableData.push({
-          date: document.getElementById(`date${i}`).value,
-          product: document.getElementById(`product${i}`).value,
-          p1: parseInt(p1),
-          p2: parseInt(p2),
-          p3: parseInt(p3),
-          total: total
-        });
-      }
-     // calculateGrandTotal();
-    }
-
-    function calculateGrandTotal() {
-      let grandTotal = 0;
-      for (let i = 0; i < tableData.length; i++) {
-        grandTotal += tableData[i].total;
-      }
-      document.getElementById("grand-total").value = grandTotal.toFixed(2);
-    }
-
-    function saveTable() {
-      let json = JSON.stringify(tableData);
-      let blob = new Blob([json], {type: "application/json"});
-      let url = URL.createObjectURL(blob);
-      let a = document.createElement("a");
-      a.href = url;
-      a.download = "day2.json";
-      a.click();
-    }
-  </script>
+    <script src="public/js/scriptwpd.js"></script>
 </body>
 </html>
