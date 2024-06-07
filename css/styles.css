@@ -1,0 +1,22 @@
+/* styles.css */
+body {
+    background-color: orange;
+}
+
+#myTable {
+    background-color: yellow;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+#table-body {
+    text-align: center;
+}
