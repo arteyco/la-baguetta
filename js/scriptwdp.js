@@ -90,6 +90,13 @@ function saveToJson() {
         };
         data.push(row);
     }
-    let json = JSON.stringify(data, null, 4);
-    localStorage.setItem('day4.json', json);
+   // let json = JSON.stringify(data, null, 4);
+  //  localStorage.setItem('day4.json', json);
+
+     const json = JSON.stringify(data, null, 4);
+    const file = new Blob([json], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(file);
+    link.download = 'day4.json';
+    link.click();
 }
