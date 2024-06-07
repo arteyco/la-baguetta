@@ -38,7 +38,7 @@ function calculateTotal() {
         let p1 = parseInt(rows[i].cells[3].innerHTML);
         let p2 = parseInt(rows[i].cells[4].innerHTML);
         let p3 = parseInt(rows[i].cells[5].innerHTML);
-        let total = p1 + p2 * p3;
+        let total = (p1 + p2 ) * p3;
         rows[i].cells[6].innerHTML = total;
     }
 }
