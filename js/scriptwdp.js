@@ -13,13 +13,13 @@ for (let i = 0; i < 30; i++) {
             cell.innerHTML = 'Product ' + (i + 1);
         } else if (j === 3) {            
             cell.innerHTML = i + 1;
-            cell.contentEditable='true';            
+           cell.contentEditable = 'true';           
         } else if (j === 4) {            
             cell.innerHTML = i + 2;
-            cell.contentEditable='true';
+            cell.contentEditable = 'true';
         } else if (j === 5) {            
             cell.innerHTML = i + 3;
-            cell.contentEditable='true';
+            cell.contentEditable = 'true';
         } else {
             cell.innerHTML = '';
         }
