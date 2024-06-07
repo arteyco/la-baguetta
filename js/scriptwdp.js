@@ -91,7 +91,7 @@ function saveToJson() {
         data.push(row);
 
         // Function to make columns editable
-        document.getElementById('editButton').addEventListener('click', makeColsEditable);
+        document.getElementById('makeColsEditable').addEventListener('click', makeColsEditable);
 function makeColsEditable() {
     let table = document.getElementById('myTable');
     let rows = table.rows;
