@@ -93,24 +93,6 @@ function saveToJson() {
         };
         data.push(row);
 
-        // Function to make columns editable
-        document.getElementById('makeColsEditable').addEventListener('click', makeColsEditable);
-function makeColsEditable() {
-    let table = document.getElementById('myTable');
-    let rows = table.rows;
-    for (let i = 1; i < rows.length; i++) {
-        rows[i].cells[3].contentEditable = 'true'; // p1
-        rows[i].cells[4].contentEditable = 'true'; // p2
-        rows[i].cells[5].contentEditable = 'true'; // p3
-    }
-}
-
-// Add an "Edit" button
-let editButton = document.createElement('button');
-editButton.innerHTML = 'Edit';
-editButton.addEventListener('click', makeColsEditable);
-document.body.appendChild(editButton);
-
     }
    // let json = JSON.stringify(data, null, 4);
   //  localStorage.setItem('day4.json', json);
